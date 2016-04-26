@@ -39,8 +39,11 @@ class CPUPlayer(Player):
         elif self.mode=='hard': return self.playHard(sticks)
         else: return self.playMedium(sticks)
     def playMedium(self,sticks):
+        if sticks==4: return 3
+        elif sticks==3: return 2
+        elif sticks==2: return 1
+        else: return self.playRandom(sticks)
         # TODO compléter ici avec les quelques conditions pour éviter de faire une grosse erreur aux derniers tours
-        return self.playRandom(sticks)
     def playEasy(self,sticks):
         return self.playRandom(sticks)
     def playRandom(self,sticks):
