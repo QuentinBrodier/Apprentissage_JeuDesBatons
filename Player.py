@@ -43,7 +43,6 @@ class CPUPlayer(Player):
         elif sticks==3: return 2
         elif sticks==2: return 1
         else: return self.playRandom(sticks)
-        # TODO compléter ici avec les quelques conditions pour éviter de faire une grosse erreur aux derniers tours
     def playEasy(self,sticks):
         return self.playRandom(sticks)
     def playRandom(self,sticks):
@@ -55,7 +54,17 @@ class CPUPlayer(Player):
         # utiliser la méthode 'chooseConnectedNeuron' du self.previousNeuron puis retourner le nombre de bâtons à jouer
         # bien activer le réseau de neurones avec la méthode 'activateNeuronPath' après avoir choisi un neurone cible
         # attention à gérer les cas particuliers (premier tour ou sticks==1)
-        return playMedium(sticks)
+
+        # Premier tour
+        if self.previousNeuron==None:
+        	
+        	return self.playRandom(sticks)
+        else:
+        	neuron = self.previousNeuron
+        	nextNeuron = neuron.chooseConnectedNeuron(neuron.index-sticks)
+        	self.previousNeuron = nextNeuron
+        	return neuron.index - nextNeuron.index
+
     def getNeuronNetwork(self): return self.netw
     def addWin(self):
         super().addWin()
