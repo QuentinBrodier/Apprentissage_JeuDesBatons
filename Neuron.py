@@ -46,25 +46,24 @@ class Neuron:
             if neuron!=None: self.connections[neuron]=baseWeight
     def chooseConnectedNeuron(self,shift):
         neuron = None
-        # TODO méthode qui retourne un neurone connecté au neurone actuel en fonction du 'shift' (cf. CPUPlayer).
-        # On devra utiliser la méthode self.weighted_choice pour choisir au hasard dans une liste de connexions disponibles en fonction de leurs poids
+        # SHIFT = décalage (ce que le joueur à joué)
         test = False
-        connectionsCopie = self.connections
+        connectionsCopie = self.connections.copy()
         while test == False:
-            neuron = self.weighted_choice(self.connectionsCopie)
-            connectionsCopie.remove(neuron)
-            test = self.testNeuron(self.index-shift)
+            neuron = self.weighted_choice(connectionsCopie)
+            connectionsCopie.pop(neuron)
+            test = neuron.testNeuron(self.index-shift)
             if test == True: 
                 return neuron
             if len(connectionsCopie) == 0:
                 return None  
 
     def testNeuron(self,inValue):
-        # ---- TODO renvoie un booléen : True si la différence entre la 'inValue' et la valeur du neurone actuel est comprise entre 1 et 3 inclus
+        # InValue : Neuron suivant à tester - Shift
         if inValue-self.index>=1 and inValue-self.index<=3: return True
         else: return False
     def recompenseConnection(self,neuron):
-        # TODO récompenser la connexion entre le neurone actuel et 'neuron'
+        self.connections[neuron] = self.connections[neuron]+RECOMPENSE
         pass
     def printConnections(self):
         print("Connections of",self.asString()+":")

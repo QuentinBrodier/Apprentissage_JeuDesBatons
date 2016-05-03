@@ -25,6 +25,7 @@ class HumanPlayer(Player):
                     nb=int(nb)
                     if nb>=1 and nb<=3 and sticks-nb>=0:
                         correct=True
+                        print("\n")
                 except: pass
             return nb
 
@@ -48,24 +49,23 @@ class CPUPlayer(Player):
     def playRandom(self,sticks):
         return random.randint(1, (sticks%3)+1)
     def playHard(self,sticks):
-        # TODO utiliser le réseau neuronal pour choisir le nombre de bâtons à jouer
-        # utiliser l'attribut self.previousNeuron pour avoir le neuron précédemment sollicité dans la partie
-        # calculer un 'shift' qui correspond à la différence entre la valeur du précédent neurone et le nombre de bâtons encore en jeu
-        # utiliser la méthode 'chooseConnectedNeuron' du self.previousNeuron puis retourner le nombre de bâtons à jouer
-        # bien activer le réseau de neurones avec la méthode 'activateNeuronPath' après avoir choisi un neurone cible
-        # attention à gérer les cas particuliers (premier tour ou sticks==1)
-
-        # Premier tour
-        if self.previousNeuron==None:
-        	
-        	return self.playRandom(sticks)
-        else:
-        	neuron = self.previousNeuron
-        	nextNeuron = neuron.chooseConnectedNeuron(neuron.index-sticks)
-        	self.previousNeuron = nextNeuron
-        	return neuron.index - nextNeuron.index
-
+        if self.previousNeuron==None:                               # PREMIER TOUR
+            self.previousNeuron = self.netw.getNeuron(sticks)
+            neuronPrev = self.previousNeuron
+            nextNeuron = neuronPrev.chooseConnectedNeuron(0)
+            self.previousNeuron = nextNeuron
+            self.netw.activateNeuronPath(neuronPrev,nextNeuron)
+            return (neuronPrev.index-nextNeuron.index)
+        elif sticks==1:                                             # DERNIER TOUR
+            return 1    
+        else:                                                       # TOURS INTERMEDIAIRES
+            neuronPrev = self.previousNeuron
+            nextNeuron = neuronPrev.chooseConnectedNeuron(neuronPrev.index-sticks)
+            self.previousNeuron = nextNeuron
+            self.netw.activateNeuronPath(neuronPrev,nextNeuron)
+            return sticks-nextNeuron.index
     def getNeuronNetwork(self): return self.netw
+    def setNeuronNetwork(self,ns): self.netw = ns
     def addWin(self):
         super().addWin()
         self.netw.recompenseConnections()
