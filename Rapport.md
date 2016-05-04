@@ -1,6 +1,25 @@
 Rapport de projet d'Apprentissage
 =============================================
 
+Liste des scrits :
+
+		- Script1 : 
+			Lancement d'une partie Human VS CPU en mode facile
+		- Script1-2 : 
+			Lancement d'une partie Human VS CPU en mode normal
+		- Script1-3 : 
+			Lancement d'une partie Human VS CPU en mode difficile
+		- Script2 : 
+			Lancement de 50 000 parties de 2 CPU en mode difficile, avec affichage du nombre de victoires
+		- Script3 : 
+			Lancement de 5 000 parties de 2 CPU avec des modes différents (Easy VS Medium, Easy VS Hard etc.)
+			Enregistrement lors du mode Hard VS Hard du réseau de neurone dans un fichier sérialisé
+		- Script4 :
+			Jeu final, effectuer une partie Human VS CPU selon les 3 modes
+			Le mode Hard utilise le fichier sérialisé créé avec le script 3
+		- ScriptOptionnel :
+			Lancement de 5 000 parties de 2 CPU en mode difficile, avec affichage des taux d'erreurs
+
 Question 5
 
         L'ordinateur fait des erreurs car, la version "easy" utilise seulement une fonction
@@ -40,3 +59,19 @@ Question 9
 			s'il reste 9 batons et que le joueur en choisi 3, l'ordinateur en choisira 1 (il restera 5 batons)
 
 		Etc.
+
+
+Question Optionnelle
+
+		Pour gagner une partie en étant le premier joueur, nous devons faire en sorte de tomber sur les batons restants :
+		13, 9 et 5. Si la première machine à chaque tour ne tombe pas sur un de ses chiffres après avoir joué (Multiples de 4 + 1),
+		on comptabilise une erreur. A la fin de la partie, on obtient le taux d'erreur en divisant le nombre d'erreurs par le nombre
+		de coup au total.
+		Pour la deuxième machine, on ne compte pas forcément d'erreur puisqu'elle peut ne pas avoir le choix.
+
+		On remarque bien en lançant le script Optionnel que plus les parties avancent et moins les machines font d'erreurs 
+		(puisqu'elles apprennent de leurs parties précédentes).
+
+		Une solution qui pourrait être mise en place pour améliorer le réseau de neurone final serait de "punir" certaines "synapses"
+		lorsque la machine perd la partie. En effet, à l'heure actuelle, on récompense seulement lorsque la machine gagne.
+		Le fait de punir certains chemins reviendrai à obtenir plus de chance d'emprunter un chemin qui fera gagner la machine.

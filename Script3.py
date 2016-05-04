@@ -12,7 +12,7 @@ jeu = Game(15)
 player1 = CPUPlayer("La Machine 1 Easy","easy",15)
 player2 = CPUPlayer("La Machine 2 Easy","easy",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")
@@ -23,7 +23,7 @@ print(str(player2.getName()) + " : " + str(player2.getNbWin()) + " victoires sur
 player1 = CPUPlayer("La Machine 1 Easy","easy",15)
 player2 = CPUPlayer("La Machine 2 Medium","medium",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")
@@ -34,7 +34,7 @@ print(str(player2.getName()) + " : " + str(player2.getNbWin()) + " victoires sur
 player1 = CPUPlayer("La Machine 1 Medium","medium",15)
 player2 = CPUPlayer("La Machine 2 Hard","hard",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")
@@ -45,7 +45,7 @@ print(str(player2.getName()) + " : " + str(player2.getNbWin()) + " victoires sur
 player1 = CPUPlayer("La Machine 1 Easy","easy",15)
 player2 = CPUPlayer("La Machine 2 Hard","hard",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")
@@ -56,7 +56,7 @@ print(str(player2.getName()) + " : " + str(player2.getNbWin()) + " victoires sur
 player1 = CPUPlayer("La Machine 1 Medium","medium",15)
 player2 = CPUPlayer("La Machine 2 Medium","medium",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")
@@ -67,7 +67,7 @@ print(str(player2.getName()) + " : " + str(player2.getNbWin()) + " victoires sur
 player1 = CPUPlayer("La Machine 1 Hard","hard",15)
 player2 = CPUPlayer("La Machine 2 Hard","hard",15)
 
-for i in range(1,NB_PARTIES):
+for i in range(1,NB_PARTIES+1):
 	jeu.start(player1,player2,False)
 
 print(str(player1.getName()) + " : " + str(player1.getNbWin()) + " victoires sur " + str(NB_PARTIES) + " parties.")

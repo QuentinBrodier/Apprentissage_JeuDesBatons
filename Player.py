@@ -35,6 +35,8 @@ class CPUPlayer(Player):
         self.mode = mode
         self.netw = NeuronNetwork(3,nbSticks)
         self.previousNeuron = None
+        self.nbErreur = 0
+        self.nbTour = 0
     def play(self,sticks):
         if self.mode=='easy': return self.playEasy(sticks)
         elif self.mode=='hard': return self.playHard(sticks)
@@ -47,7 +49,8 @@ class CPUPlayer(Player):
     def playEasy(self,sticks):
         return self.playRandom(sticks)
     def playRandom(self,sticks):
-        return random.randint(1, (sticks%3)+1)
+        if sticks<4: return random.randint(1,sticks)
+        else: return random.randint(1,3)
     def playHard(self,sticks):
         if self.previousNeuron==None:                               # PREMIER TOUR
             self.previousNeuron = self.netw.getNeuron(sticks)
@@ -55,17 +58,30 @@ class CPUPlayer(Player):
             nextNeuron = neuronPrev.chooseConnectedNeuron(0)
             self.previousNeuron = nextNeuron
             self.netw.activateNeuronPath(neuronPrev,nextNeuron)
+            # Taux erreur
+            if(nextNeuron.index%4!=1 and neuronPrev.index%4!=1):
+                self.nbErreur = self.nbErreur+1
+            self.nbTour = self.nbTour+1
             return (neuronPrev.index-nextNeuron.index)
         elif sticks==1:                                             # DERNIER TOUR
+            self.nbTour = self.nbTour+1
             return 1    
         else:                                                       # TOURS INTERMEDIAIRES
             neuronPrev = self.previousNeuron
             nextNeuron = neuronPrev.chooseConnectedNeuron(neuronPrev.index-sticks)
             self.previousNeuron = nextNeuron
             self.netw.activateNeuronPath(neuronPrev,nextNeuron)
+            # Taux erreur
+            if(nextNeuron.index%4!=1 and sticks%4!=1):
+                self.nbErreur = self.nbErreur+1
+            self.nbTour = self.nbTour+1
             return sticks-nextNeuron.index
     def getNeuronNetwork(self): return self.netw
     def setNeuronNetwork(self,ns): self.netw = ns
+    def getTauxErreur(self): return int((self.nbErreur/self.nbTour)*100)
+    def resetTauxErreur(self): 
+        self.nbErreur = 0
+        self.nbTour = 0
     def addWin(self):
         super().addWin()
         self.netw.recompenseConnections()
