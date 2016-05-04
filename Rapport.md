@@ -1,7 +1,7 @@
 Rapport de projet d'Apprentissage
 =============================================
 
-Liste des scrits :
+Liste des scripts :
 
 		- Script1 : 
 			Lancement d'une partie Human VS CPU en mode facile
@@ -22,8 +22,8 @@ Liste des scrits :
 
 Question 5
 
-        L'ordinateur fait des erreurs car, la version "easy" utilise seulement une fonction
-        random pour jouer.
+		L'ordinateur fait des erreurs car la version "easy" utilise seulement une fonction
+		random pour jouer.
 
 Question 6
 
@@ -34,7 +34,7 @@ Question 6
 Question 8
 
 		Le but de la méthode de faire jouer l'ordinateur contre lui-même est de faire de l'apprentissage.
-		En effet, avec le réseau de neurone, on va privilégier le chemin par lequel il est passé lorsqu'il 
+		En effet, avec le réseau de neurones, on va privilégier le chemin par lequel il est passé lorsqu'il 
 		a gagné. On va donc attribuer des récompenses aux synapses que la machine a emprunté lorsqu'elle a 
 		gagnée.
 		On va donc la faire jouer un grand nombre de fois afin qu'elle puisse apprendre d'elle-même et d'être
@@ -66,7 +66,7 @@ Question Optionnelle
 		Pour gagner une partie en étant le premier joueur, nous devons faire en sorte de tomber sur les batons restants :
 		13, 9 et 5. Si la première machine à chaque tour ne tombe pas sur un de ses chiffres après avoir joué (Multiples de 4 + 1),
 		on comptabilise une erreur. A la fin de la partie, on obtient le taux d'erreur en divisant le nombre d'erreurs par le nombre
-		de coup au total.
+		de coups au total.
 		Pour la deuxième machine, on ne compte pas forcément d'erreur puisqu'elle peut ne pas avoir le choix.
 
 		On remarque bien en lançant le script Optionnel que plus les parties avancent et moins les machines font d'erreurs 

@@ -46,7 +46,7 @@ class Neuron:
             if neuron!=None: self.connections[neuron]=baseWeight
     def chooseConnectedNeuron(self,shift):
         neuron = None
-        # SHIFT = décalage (ce que le joueur à joué)
+        # SHIFT = décalage (ce que le joueur précédent à joué)
         test = False
         connectionsCopie = self.connections.copy()
         while test == False:
